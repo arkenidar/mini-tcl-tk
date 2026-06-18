@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Plain run: open wish in VS Code's integrated browser, served over http
+      // (so the example picker's fetch works). Press F5 with this selected.
+      "type": "editor-browser",
+      "request": "launch",
+      "name": "Open wish (integrated browser)",
+      "url": "http://localhost:8777/wish.html",
+      "preLaunchTask": "serve wish (http)"
+    },
+    {
+      // Debug-run: external Chrome with the JS debugger attached. webRoot lets you
+      // set breakpoints directly in tcl.js / tk.js / wish.js.
+      "type": "chrome",
+      "request": "launch",
+      "name": "Debug wish (Chrome)",
+      "url": "http://localhost:8777/wish.html",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "serve wish (http)"
+    },
+    {
+      // Debug the interpreter tests in Node (requires Node on PATH).
+      "type": "node",
+      "request": "launch",
+      "name": "Debug tcl tests (Node)",
+      "program": "${workspaceFolder}/test/tcl.test.mjs",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

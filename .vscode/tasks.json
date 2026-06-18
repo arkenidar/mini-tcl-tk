@@ -1,0 +1,50 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // Serve the folder over http on 8777. The example picker fetch()es the
+      // .tcl files, which browsers block over file:// — so loading examples
+      // needs the page served. Only requires python3 (no Node). Used as the
+      // preLaunchTask for the "Open wish …" / "Debug wish …" launch configs.
+      "label": "serve wish (http)",
+      "type": "shell",
+      "command": "cd ${workspaceFolder}; (pkill -f 'http.server 8777' 2>/dev/null || true); sleep 0.3; python3 -m http.server 8777",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": [
+          { "regexp": ".", "file": 1, "line": 2, "column": 3, "message": 4 }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Serving HTTP",
+          "endsPattern": "Serving HTTP"
+        }
+      },
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "run tcl tests",
+      "type": "shell",
+      "command": "node test/tcl.test.mjs",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "run tk tests",
+      "type": "shell",
+      "command": "node test/tk.test.mjs",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "run all tests",
+      "type": "shell",
+      "command": "node test/tcl.test.mjs && node test/tk.test.mjs",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": { "kind": "test", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    }
+  ]
+}

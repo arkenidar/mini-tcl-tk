@@ -1,0 +1,7 @@
+# editors / OS
+.DS_Store
+*.swp
+.vscode/*.log
+
+# scratch
+_*.html
