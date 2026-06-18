@@ -1,5 +1,7 @@
 # wish — Tcl/Tk in JavaScript, with native HTML controls
 
+**Live demo:** <https://arkenidar.github.io/mini-tcl-tk/>
+
 An interactive **Tcl/Tk shell that runs entirely in the browser**: a Tcl interpreter
 written in JavaScript (`tcl.js`) drives a Tk widget toolkit (`tk.js`) that renders
 **real native HTML controls** — `<button>`, `<input>`, `<input type=range>`,
@@ -104,3 +106,7 @@ eval catch error string list llength lindex lappend lrange split join info puts`
 This is the "best of js+tcl + best of html+tk" sibling of the canvas/Fengari `wish` in
 [`mini-tcl.lua/docs`](../../service/mini-tcl.lua/docs). Same Tk vocabulary; here the
 interpreter is native JS and the widgets are native HTML.
+
+## License
+
+Released into the public domain under the [Unlicense](LICENSE).
