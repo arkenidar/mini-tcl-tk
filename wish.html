@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wish — Tcl/Tk in JavaScript with native HTML controls</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+<div class="brand">
+<h1>wish<span class="blink">_</span></h1>
+<p class="tagline">Tcl/Tk in JavaScript — a JS interpreter (<code>tcl.js</code>) driving
+real native HTML controls (<code>tk.js</code>). No Lua, no WASM, no build step.</p>
+</div>
+<nav>
+<a href="https://www.tcl-lang.org/">Tcl/Tk</a>
+<a href="README.md">README</a>
+</nav>
+</header>
+
+<main class="layout">
+
+<div id="example-bar" class="example-picker">
+<label>Example:</label>
+<select class="example-select"></select>
+<button type="button" class="example-load">Load &amp; apply ▶</button>
+<span class="example-hint hint"></span>
+</div>
+
+<!-- Widgets created by Tk commands appear here as native DOM elements. -->
+<section id="screen" class="card">
+<h2>Screen <small>the "." toplevel</small></h2>
+<div id="tk-root"></div>
+</section>
+
+<section id="console" class="card">
+<h2>Console <button id="clear-console-btn" type="button" title="Clear the console output">Clear</button></h2>
+<pre id="repl-output"></pre>
+<form id="repl-form">
+<label for="repl-input">%</label>
+<input id="repl-input" type="text" autocomplete="off" spellcheck="false"
+       placeholder='button .b -text "Click me" -command {incr n}'>
+<button type="submit">Run</button>
+</form>
+</section>
+
+<section id="editor" class="card">
+<h2>Script <small>edit, then Run / Apply (Ctrl/Cmd+Enter runs)</small></h2>
+<form id="wish-script-form">
+<textarea id="wish-script" spellcheck="false" autocomplete="off"># hello — the simplest counter. Edit freely, then press Run.
+set n 0
+label .out -textvariable n
+pack .out -side top
+button .b -text "Click me" -command {incr n}
+pack .b -side top -pady 8</textarea>
+<div class="buttons">
+<button type="button" id="apply-btn-2">Apply ▶</button>
+<button type="submit">Run script ▶</button>
+</div>
+</form>
+</section>
+
+<section id="actions-card" class="card">
+<h2>Actions <small>choose the consequences, then Apply</small></h2>
+<div id="actions">
+<div class="presets">
+<span>Presets:</span>
+<button type="button" data-preset="clear">Clear screen</button>
+<button type="button" data-preset="reset">Reset</button>
+<button type="button" data-preset="replace">Replace</button>
+</div>
+<div class="consequences">
+<label><input type="checkbox" id="chk-widgets"> clear widgets</label>
+<label><input type="checkbox" id="chk-vars"> clear variables</label>
+<label><input type="checkbox" id="chk-procs"> clear procs</label>
+<label><input type="checkbox" id="chk-console"> clear console</label>
+<label><input type="checkbox" id="chk-run"> run script after</label>
+</div>
+<button type="button" id="apply-btn">Apply ▶</button>
+<p class="hint">Tweak a preset for in-between behaviour — e.g. uncheck
+<em>clear variables</em> + check <em>run script after</em> for a re-run that keeps
+state. Scriptable too: <code>wish reset|clear|replace</code>.</p>
+</div>
+</section>
+
+</main>
+
+<script src="tcl.js"></script>
+<script src="tk.js"></script>
+<script src="wish.js"></script>
+</body>
+</html>
